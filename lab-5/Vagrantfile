@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  #configuration du load balancer
+  config.vm.define "lb" do |lb|
+    lb.vm.box = "ubuntu/trusty64"
+    lb.vm.network "private_network", ip: "10.0.0.10" 
+  end
+  #configuration de la premiere machine
+  config.vm.define "web1" do |web1|
+    web1.vm.box = "ubuntu/trusty64"
+    web1.vm.network "private_network", ip: "10.0.0.11"
+  end
+  #configuration de la seconde machine
+  config.vm.define "web2" do |web2|
+    web2.vm.box = "ubuntu/trusty64"
+    web2.vm.network "private_network", ip: "10.0.0.12"
+  end
+end

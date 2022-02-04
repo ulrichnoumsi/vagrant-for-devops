@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+CPU = 1
+RAM = 1024
+IP = "10.0.0.10"
+NAME = "minikube"
+
+
+Vagrant.configure("2") do |config|
+  config.vm.define "minikube" do |minikube|
+    minikube.vm.box = "ubuntu/trusty64"
+    minikube.vm.network "private_network", ip: IP
+    minikube.vm.provision "shell", path: "install_minikube.sh"
+    minikube.vm.provider "virtualbox" do |v|
+      v.memory = RAM
+      v.cpus = CPU
+      v.name  = NAME
+    end
+  end
+end
